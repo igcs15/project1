@@ -1,0 +1,24 @@
+<% if notice %>
+  <aside id="notice"><%= notice %></aside>
+<% end %>
+<h1>Store</h1>
+<ul class="catalog">
+  <% @products.each do |product| %>
+    <li>
+      <%= image_tag(product.image_url,:size => "260x180") %>
+      <h2><%= product.title %></h2>
+      <p>
+        <%= sanitize(product.description) %>
+      </p>
+      <div class="price">
+        <%= product.price %>
+        <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
+
+
+      </div>
+    </li>
+  <% end %>
+  <%= link_to "Add Product", controller: "products", action: "index" %>
+</ul>
+
+
